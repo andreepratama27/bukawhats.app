@@ -27,7 +27,7 @@
     <div class="w-28 mt-2 mb-4 h-1 border-gray-500 border-b-2 border-dashed"></div>
 
     <div class="input-wrapper py-4">
-      <input type="number" class="w-full bg-white p-4 border-2 rounded-none outline-none border-black" placeholder="Masukkan nomor Whatsapp" bind:value={phoneNumber} required>
+      <input type="text" pattern="[0-9]*" inputmode="numeric" class="w-full bg-white p-4 border-2 rounded-none outline-none border-black" placeholder="Masukkan nomor Whatsapp" bind:value={phoneNumber} required>
     </div>
     
     <button class='w-full border-2 mt-2 shadow-skew border-black p-4 bg-white disabled:bg-gray-200' disabled={!phoneNumber} on:click={forwardWhatsapp}>
