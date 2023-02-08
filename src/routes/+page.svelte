@@ -1,9 +1,11 @@
 <script lang="ts">
-  let phoneNumber: number;
+  let phoneNumber: string;
 
   function forwardWhatsapp() {
     const link = document.createElement('a')
-    link.href = `https://web.whatsapp.com/send?phone=${phoneNumber}`
+    phoneNumber = phoneNumber.toString().slice(0, phoneNumber.toString().length);
+
+    link.href = `https://api.whatsapp.com/send?phone=62${parseInt(phoneNumber, 10)}`
     link.target = '_blank'
 
     link.click()
@@ -27,7 +29,7 @@
     <div class="w-32 mt-2 mb-4 h-1 bg-gray-800"></div>
 
     <div class="input-wrapper py-4">
-      <input type="number" class="w-full bg-white p-4 border-2 rounded-none outline-none border-black" placeholder="Masukkan nomor Whatsapp" bind:value={phoneNumber}>
+      <input type="number" class="w-full bg-white p-4 border-2 rounded-none outline-none border-black" placeholder="Masukkan nomor Whatsapp" bind:value={phoneNumber} required>
     </div>
     
     <button class='w-full border-2 mt-4 shadow-skew border-black p-4 bg-white disabled:bg-gray-200' disabled={!phoneNumber} on:click={forwardWhatsapp}>
