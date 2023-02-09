@@ -1,15 +1,27 @@
 <script lang="ts">
+	import { browser } from "$app/environment";
+
   let phoneNumber: string;
+  let isPhone: boolean = browser && /Android|iPhone/i.test(window.navigator.userAgent);
+
+  function getUrlLink(phoneNumber: string) {
+    if (isPhone) {
+      return `https://api.whatsapp.com/send?phone=62${phoneNumber}`
+    }
+
+    return `https://web.whatsapp.com/send?phone=62${phoneNumber}`
+  }
 
   function forwardWhatsapp() {
     const link = document.createElement('a')
     phoneNumber = phoneNumber.toString().slice(0, phoneNumber.toString().length);
 
-    link.href = `https://api.whatsapp.com/send?phone=62${parseInt(phoneNumber, 10)}`
+    link.href = getUrlLink(phoneNumber);
     link.target = '_blank'
 
     link.click()
   };
+
 </script>
 
 <section id="app">
